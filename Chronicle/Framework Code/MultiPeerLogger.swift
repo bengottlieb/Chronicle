@@ -41,6 +41,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	}
 	
 	public func start() {
+		
 		if self.advertising { return }
 		if self.advertiser == nil {
 			self.advertiser = MCNearbyServiceAdvertiser(peer: self.localPeerID, discoveryInfo: nil, serviceType: MCSESSION_SERVICE_NAME)
