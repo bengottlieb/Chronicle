@@ -116,6 +116,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 		switch state {
 		case .Connected:
 			self.connectedPeers.insert(peerID)
+			self.sendHandshake()
 			self.flush()
 			
 		case .Connecting:
@@ -134,4 +135,10 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	public func session(session: MCSession!, didStartReceivingResourceWithName: String!, fromPeer: MCPeerID!, withProgress progress: NSProgress!) {}
 	public func session(session: MCSession!, didFinishReceivingResourceWithName: String!, fromPeer: MCPeerID!, atURL: NSURL!, withError: NSError!) {}
 
+	
+	func sendHandshake() {
+		var error: NSError?
+		
+		self.session.sendData(MultipeerHandshake().data, toPeers: nil, withMode: .Reliable, error: &error)
+	}
 }

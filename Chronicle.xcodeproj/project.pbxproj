@@ -38,18 +38,20 @@
 		B5A85A4A1B207ABD003463BA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A481B207ABD003463BA /* Logger.swift */; };
 		B5A85A4C1B207AD6003463BA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4B1B207AD6003463BA /* Message.swift */; };
 		B5A85A4D1B207AD6003463BA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4B1B207AD6003463BA /* Message.swift */; };
-		B5A85A4F1B20BDF9003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */; };
-		B5A85A501B20BDF9003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */; };
 		B5A85A7B1B20DAD5003463BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A7A1B20DAD5003463BA /* AppDelegate.swift */; };
 		B5A85A7D1B20DAD5003463BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A85A7C1B20DAD5003463BA /* Images.xcassets */; };
 		B5A85A801B20DAD5003463BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A85A7E1B20DAD5003463BA /* MainMenu.xib */; };
 		B5A85A8C1B20DAD6003463BA /* Listener_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A8B1B20DAD6003463BA /* Listener_MacTests.swift */; };
 		B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
 		B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
-		B5A85AA21B21F355003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA11B21F355003463BA /* ConsoleLogger.swift */; };
-		B5A85AA31B21F355003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA11B21F355003463BA /* ConsoleLogger.swift */; };
 		B5A85AA61B21F36A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA51B21F36A003463BA /* LogListener.swift */; };
 		B5A85AA71B21F36A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA51B21F36A003463BA /* LogListener.swift */; };
+		B5A85AAC1B21F3AD003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */; };
+		B5A85AAD1B21F3AD003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */; };
+		B5A85AAE1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */; };
+		B5A85AAF1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */; };
+		B5A85AB11B21F50F003463BA /* MultipeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */; };
+		B5A85AB21B21F50F003463BA /* MultipeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */; };
 		B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Chronicle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -130,7 +132,6 @@
 		B58D648F1A899094005A0002 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5A85A481B207ABD003463BA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B5A85A4B1B207AD6003463BA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerLogger.swift; sourceTree = "<group>"; };
 		B5A85A691B20D8F7003463BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A85A6A1B20D8F7003463BA /* ChronicleListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleListenerTests.swift; sourceTree = "<group>"; };
 		B5A85A761B20DAD5003463BA /* Listener_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listener_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,8 +143,10 @@
 		B5A85A8A1B20DAD6003463BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A85A8B1B20DAD6003463BA /* Listener_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener_MacTests.swift; sourceTree = "<group>"; };
 		B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSErrorAdditions.swift; sourceTree = "<group>"; };
-		B5A85AA11B21F355003463BA /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		B5A85AA51B21F36A003463BA /* LogListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogListener.swift; sourceTree = "<group>"; };
+		B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerLogger.swift; sourceTree = "<group>"; };
+		B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHandshake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,10 +270,9 @@
 			children = (
 				B58D64751A898F81005A0002 /* Chronicle.swift */,
 				B5A85A481B207ABD003463BA /* Logger.swift */,
-				B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */,
 				B5A85A4B1B207AD6003463BA /* Message.swift */,
 				B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */,
-				B5A85AA11B21F355003463BA /* ConsoleLogger.swift */,
+				B5A85AA81B21F3AD003463BA /* Loggers */,
 			);
 			name = "Framework Code";
 			path = "Chronicle/Framework Code";
@@ -349,6 +351,24 @@
 			);
 			name = Listener;
 			path = Chronicle/Listener;
+			sourceTree = "<group>";
+		};
+		B5A85AA81B21F3AD003463BA /* Loggers */ = {
+			isa = PBXGroup;
+			children = (
+				B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */,
+				B5A85AAA1B21F3AD003463BA /* Multipeer */,
+			);
+			path = Loggers;
+			sourceTree = "<group>";
+		};
+		B5A85AAA1B21F3AD003463BA /* Multipeer */ = {
+			isa = PBXGroup;
+			children = (
+				B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */,
+				B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */,
+			);
+			path = Multipeer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -620,11 +640,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A85AAE1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
+				B5A85AB11B21F50F003463BA /* MultipeerHandshake.swift in Sources */,
 				B5A85A4C1B207AD6003463BA /* Message.swift in Sources */,
+				B5A85AAC1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
 				B58D647F1A898FBD005A0002 /* Chronicle.swift in Sources */,
 				B5A85A491B207ABD003463BA /* Logger.swift in Sources */,
-				B5A85AA21B21F355003463BA /* ConsoleLogger.swift in Sources */,
-				B5A85A4F1B20BDF9003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
 				B5A85AA61B21F36A003463BA /* LogListener.swift in Sources */,
 			);
@@ -642,11 +663,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A85AAF1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
+				B5A85AB21B21F50F003463BA /* MultipeerHandshake.swift in Sources */,
 				B5A85A4D1B207AD6003463BA /* Message.swift in Sources */,
+				B5A85AAD1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
 				B58D64831A898FBE005A0002 /* Chronicle.swift in Sources */,
 				B5A85A4A1B207ABD003463BA /* Logger.swift in Sources */,
-				B5A85AA31B21F355003463BA /* ConsoleLogger.swift in Sources */,
-				B5A85A501B20BDF9003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
 				B5A85AA71B21F36A003463BA /* LogListener.swift in Sources */,
 			);
