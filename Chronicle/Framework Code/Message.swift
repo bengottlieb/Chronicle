@@ -21,8 +21,10 @@ public class Message: NSObject, NSCoding, Printable {
 	public var column: Int?
 	public var file: String?
 	public var function: String?
+	public var date: NSDate
 	
 	override init() {
+		date = NSDate()
 		super.init()
 	}
 	
@@ -32,8 +34,8 @@ public class Message: NSObject, NSCoding, Printable {
 		self.text = t
 		self.priority = p
 		self.tags = tg
-		self.file = "\(function)"
-		self.function = "\(function)"
+		if let file = file { self.file = "\(file)" }
+		if let function = function { self.function = "\(function)" }
 		self.line = line
 		self.column = column
 	}
@@ -45,13 +47,14 @@ public class Message: NSObject, NSCoding, Printable {
 		self.text = t
 		self.priority = p
 		self.tags = tg
-		self.file = "\(function)"
-		self.function = "\(function)"
+		if let file = file { self.file = "\(file)" }
+		if let function = function { self.function = "\(function)" }
 		self.line = line
 		self.column = column
 	}
 	
 	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(self.date, forKey: "date")
 		if let error = self.error { aCoder.encodeObject(error, forKey: "error") }
 		if let text = self.text { aCoder.encodeObject(text, forKey: "text") }
 		if let tags = self.tags { aCoder.encodeObject(tags, forKey: "tags") }
@@ -65,6 +68,7 @@ public class Message: NSObject, NSCoding, Printable {
 	}
 	
 	public required init(coder aDecoder: NSCoder) {
+		date = aDecoder.decodeObjectForKey("date") as? NSDate ?? NSDate()
 		if let error = aDecoder.decodeObjectForKey("error") as? NSError { self.error = error }
 		if let text = aDecoder.decodeObjectForKey("text") as? String { self.text = text }
 		if let tags = aDecoder.decodeObjectForKey("tags") as? [String] { self.tags = tags }
@@ -77,7 +81,9 @@ public class Message: NSObject, NSCoding, Printable {
 	}
 	
 	public override var description: String {
-		var text = "\(self.priority.rawValue + 1): " + (self.text ?? "")
+		var text = ""
+		
+		text += (self.text ?? "")
 		if let error = self.error { text = text + "; \(error.localizedDescription)" }
 		
 		if let file = self.file { text = text + "; \(file)" }
@@ -90,4 +96,6 @@ public class Message: NSObject, NSCoding, Printable {
 		
 		return text
 	}
+	
+	var data: NSData { return NSKeyedArchiver.archivedDataWithRootObject(self) }
 }

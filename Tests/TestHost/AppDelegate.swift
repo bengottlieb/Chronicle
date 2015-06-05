@@ -18,9 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch
 		
-		//var logger = MultiPeerLogger()
-		//Chronicle.instance.addLogger(logger)
-		//logger.start()
+		Chronicle.instance.addLogger(MultiPeerLogger())
+		Chronicle.instance.addLogger(ConsoleLogger())
 		
 		
 		clog("message from me", tags: ["important", "debug"])

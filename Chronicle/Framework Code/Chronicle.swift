@@ -11,10 +11,7 @@ import Foundation
 public func clog(message: String, priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
 	var message = Message(text: message, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 	
-	println("\(message)")
-	var data = NSKeyedArchiver.archivedDataWithRootObject(message)
-	var message2 = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Message
-	println("\(message2)")
+	Chronicle.instance.logMessage(message)
 }
 
 public class Chronicle: NSObject {
@@ -37,5 +34,9 @@ public class Chronicle: NSObject {
 		super.init()
 	}
 	
-	
+	public func logMessage(message: Message) {
+		for logger in self.activeLoggers {
+			logger.logMessage(message)
+		}
+	}
 }

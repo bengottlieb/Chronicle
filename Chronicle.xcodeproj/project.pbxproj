@@ -44,9 +44,12 @@
 		B5A85A7D1B20DAD5003463BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A85A7C1B20DAD5003463BA /* Images.xcassets */; };
 		B5A85A801B20DAD5003463BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A85A7E1B20DAD5003463BA /* MainMenu.xib */; };
 		B5A85A8C1B20DAD6003463BA /* Listener_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A8B1B20DAD6003463BA /* Listener_MacTests.swift */; };
-		B5A85A941B20DC2A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A931B20DC2A003463BA /* LogListener.swift */; };
 		B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
 		B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
+		B5A85AA21B21F355003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA11B21F355003463BA /* ConsoleLogger.swift */; };
+		B5A85AA31B21F355003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA11B21F355003463BA /* ConsoleLogger.swift */; };
+		B5A85AA61B21F36A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA51B21F36A003463BA /* LogListener.swift */; };
+		B5A85AA71B21F36A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA51B21F36A003463BA /* LogListener.swift */; };
 		B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Chronicle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -138,8 +141,9 @@
 		B5A85A851B20DAD5003463BA /* Listener_MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Listener_MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A85A8A1B20DAD6003463BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A85A8B1B20DAD6003463BA /* Listener_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener_MacTests.swift; sourceTree = "<group>"; };
-		B5A85A931B20DC2A003463BA /* LogListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogListener.swift; sourceTree = "<group>"; };
 		B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSErrorAdditions.swift; sourceTree = "<group>"; };
+		B5A85AA11B21F355003463BA /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		B5A85AA51B21F36A003463BA /* LogListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 			children = (
 				B58D64741A898F81005A0002 /* Framework Code */,
 				B504E66A1A896980001B414B /* BuildFramework.sh */,
+				B5A85AA41B21F36A003463BA /* Listener */,
 				B58D64661A898F81005A0002 /* Chronicle_Mac */,
 				B58D64691A898F81005A0002 /* Chronicle_iOS */,
 				B504E6991A896E82001B414B /* Chronicle Tests */,
@@ -265,7 +270,7 @@
 				B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */,
 				B5A85A4B1B207AD6003463BA /* Message.swift */,
 				B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */,
-				B5A85A931B20DC2A003463BA /* LogListener.swift */,
+				B5A85AA11B21F355003463BA /* ConsoleLogger.swift */,
 			);
 			name = "Framework Code";
 			path = "Chronicle/Framework Code";
@@ -335,6 +340,15 @@
 				B5A85A8A1B20DAD6003463BA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5A85AA41B21F36A003463BA /* Listener */ = {
+			isa = PBXGroup;
+			children = (
+				B5A85AA51B21F36A003463BA /* LogListener.swift */,
+			);
+			name = Listener;
+			path = Chronicle/Listener;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -609,8 +623,10 @@
 				B5A85A4C1B207AD6003463BA /* Message.swift in Sources */,
 				B58D647F1A898FBD005A0002 /* Chronicle.swift in Sources */,
 				B5A85A491B207ABD003463BA /* Logger.swift in Sources */,
+				B5A85AA21B21F355003463BA /* ConsoleLogger.swift in Sources */,
 				B5A85A4F1B20BDF9003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
+				B5A85AA61B21F36A003463BA /* LogListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,8 +645,10 @@
 				B5A85A4D1B207AD6003463BA /* Message.swift in Sources */,
 				B58D64831A898FBE005A0002 /* Chronicle.swift in Sources */,
 				B5A85A4A1B207ABD003463BA /* Logger.swift in Sources */,
+				B5A85AA31B21F355003463BA /* ConsoleLogger.swift in Sources */,
 				B5A85A501B20BDF9003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
+				B5A85AA71B21F36A003463BA /* LogListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,7 +656,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5A85A941B20DC2A003463BA /* LogListener.swift in Sources */,
 				B5A85A7B1B20DAD5003463BA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

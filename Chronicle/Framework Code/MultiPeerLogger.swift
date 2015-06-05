@@ -21,6 +21,39 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	public var advertiser: MCNearbyServiceAdvertiser!
 	public var connectedPeers = Set<MCPeerID>()
 	public var advertising = false
+	public var connected: Bool { return self.session.connectedPeers.count > 0 }
+	public var waiting: [Message] = []
+	
+	public override func logMessage(message: Message) {
+		dispatch_async(self.queue, {
+			if self.connected {
+				self.sendMessage(message)
+			} else {
+				self.waiting.append(message)
+			}
+		})
+	}
+	
+	func sendMessage(message: Message) {		//always called within the log's queue
+		if self.connected {
+			var error: NSError?
+			self.session.sendData(message.data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+			if let error = error {
+				println("error while sending: \(error)")
+			}
+		}
+	}
+	
+	public override func flush() {
+		dispatch_async(self.queue) {
+			var waiting = self.waiting
+			self.waiting = []
+			
+			for message in waiting {
+				self.sendMessage(message)
+			}
+		}
+	}
 	
 	public override init() {
 		#if os(iOS)
@@ -32,6 +65,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 		
 		super.init()
 		self.session.delegate = self
+		self.start()
 	}
 
 	public func stop() {
@@ -62,7 +96,6 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 			if peerID == self.localPeerID { return }
 			
 			invitationHandler(true, self.session)
-			//self.stop()
 		}
 	}
 
@@ -81,7 +114,10 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 
 	public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
 		switch state {
-		case .Connected: self.connectedPeers.insert(peerID)
+		case .Connected:
+			self.connectedPeers.insert(peerID)
+			self.flush()
+			
 		case .Connecting:
 			self.connectedPeers.remove(peerID)
 
