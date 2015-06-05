@@ -39,7 +39,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 			var error: NSError?
 			self.session.sendData(message.data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
 			if let error = error {
-				println("error while sending: \(error)")
+				println("error while sending to \(self.session.connectedPeers): \(error)")
 			}
 		}
 	}
@@ -139,6 +139,9 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	func sendHandshake() {
 		var error: NSError?
 		
-		self.session.sendData(MultipeerHandshake().data, toPeers: nil, withMode: .Reliable, error: &error)
+		self.session.sendData(MultipeerHandshake().data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+		if let error = error {
+			println("error while sending to \(self.session.connectedPeers): \(error)")
+		}
 	}
 }
