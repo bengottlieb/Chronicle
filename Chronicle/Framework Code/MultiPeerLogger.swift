@@ -20,6 +20,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	public var localPeerID: MCPeerID
 	public var advertiser: MCNearbyServiceAdvertiser!
 	public var connectedPeers = Set<MCPeerID>()
+	public var advertising = false
 	
 	public override init() {
 		#if os(iOS)
@@ -34,17 +35,19 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	}
 
 	public func stop() {
-		println("stopping")
+		if !self.advertising { return }
+		self.advertising = false
 		self.advertiser.stopAdvertisingPeer()
 	}
 	
 	public func start() {
+		if self.advertising { return }
 		if self.advertiser == nil {
 			self.advertiser = MCNearbyServiceAdvertiser(peer: self.localPeerID, discoveryInfo: nil, serviceType: MCSESSION_SERVICE_NAME)
 			self.advertiser.delegate = self
 		}
 		
-		println("starting")
+		self.advertising = true
 		
 		self.advertiser.startAdvertisingPeer()
 	}
@@ -58,6 +61,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 			if peerID == self.localPeerID { return }
 			
 			invitationHandler(true, self.session)
+			//self.stop()
 		}
 	}
 
@@ -69,7 +73,9 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	//MARK: Session Delegate
 
 	public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
-		
+		if let object: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithData(data) {
+			println("received \(object)")
+		}
 	}
 
 	public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
@@ -85,8 +91,6 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 				self.start()
 			}
 		}
-		
-		println("peer \(peerID) changed state: \(state.rawValue)")
 	}
 	
 	public func session(session: MCSession!, didReceiveStream: NSInputStream!, withName: String!, fromPeer: MCPeerID!) {}
