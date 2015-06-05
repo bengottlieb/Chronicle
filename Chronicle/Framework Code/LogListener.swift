@@ -8,7 +8,7 @@
 
 import Foundation
 import MultipeerConnectivity
-
+import Chronicle
 
 public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
 	public var session: MCSession
@@ -88,7 +88,9 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	//MARK: Session Delegate
 	
 	public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
-		
+		if let object: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithData(data) {
+			println("received \(object)")
+		}
 	}
 	
 	public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {

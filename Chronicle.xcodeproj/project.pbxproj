@@ -45,13 +45,9 @@
 		B5A85A801B20DAD5003463BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A85A7E1B20DAD5003463BA /* MainMenu.xib */; };
 		B5A85A8C1B20DAD6003463BA /* Listener_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A8B1B20DAD6003463BA /* Listener_MacTests.swift */; };
 		B5A85A941B20DC2A003463BA /* LogListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A931B20DC2A003463BA /* LogListener.swift */; };
-		B5A85A951B20E22D003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4E1B20BDF9003463BA /* MultiPeerLogger.swift */; };
-		B5A85A961B20E239003463BA /* Chronicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D64751A898F81005A0002 /* Chronicle.swift */; };
-		B5A85A971B20E239003463BA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A481B207ABD003463BA /* Logger.swift */; };
-		B5A85A981B20E239003463BA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A4B1B207AD6003463BA /* Message.swift */; };
 		B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
 		B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
-		B5A85A9C1B20E93E003463BA /* NSErrorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */; };
+		B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Chronicle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +72,13 @@
 			remoteGlobalIDString = B5A85A751B20DAD5003463BA;
 			remoteInfo = Listener_Mac;
 		};
+		B5EC330E1B21E471002A9F25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504E60B1A89230F001B414B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B504E6AE1A898110001B414B;
+			remoteInfo = Chronicle_Mac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +91,17 @@
 				B504E6A41A897017001B414B /* Chronicle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5EC330C1B21E41F002A9F25 /* Copy Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */,
+			);
+			name = "Copy Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -425,10 +439,12 @@
 				B5A85A721B20DAD5003463BA /* Sources */,
 				B5A85A731B20DAD5003463BA /* Frameworks */,
 				B5A85A741B20DAD5003463BA /* Resources */,
+				B5EC330C1B21E41F002A9F25 /* Copy Libraries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B5EC330F1B21E471002A9F25 /* PBXTargetDependency */,
 			);
 			name = Listener_Mac;
 			productName = Listener_Mac;
@@ -622,11 +638,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5A85A971B20E239003463BA /* Logger.swift in Sources */,
-				B5A85A9C1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
-				B5A85A951B20E22D003463BA /* MultiPeerLogger.swift in Sources */,
-				B5A85A961B20E239003463BA /* Chronicle.swift in Sources */,
-				B5A85A981B20E239003463BA /* Message.swift in Sources */,
 				B5A85A941B20DC2A003463BA /* LogListener.swift in Sources */,
 				B5A85A7B1B20DAD5003463BA /* AppDelegate.swift in Sources */,
 			);
@@ -657,6 +668,11 @@
 			isa = PBXTargetDependency;
 			target = B5A85A751B20DAD5003463BA /* Listener_Mac */;
 			targetProxy = B5A85A861B20DAD6003463BA /* PBXContainerItemProxy */;
+		};
+		B5EC330F1B21E471002A9F25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B504E6AE1A898110001B414B /* Chronicle_Mac */;
+			targetProxy = B5EC330E1B21E471002A9F25 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1070,6 +1086,7 @@
 				B5A85A8F1B20DAD6003463BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5A85A901B20DAD6003463BA /* Build configuration list for PBXNativeTarget "Listener_MacTests" */ = {
 			isa = XCConfigurationList;
@@ -1078,6 +1095,7 @@
 				B5A85A921B20DAD6003463BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

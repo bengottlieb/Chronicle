@@ -13,9 +13,9 @@ import Foundation
 	import AppKit
 #endif
 
-extension NSError {
+public extension NSError {
 	#if os(iOS)
-	func display() {
+	public func display() {
 		dispatch_async(dispatch_get_main_queue()) {
 			var alert = UIAlertController(title: self.localizedDescription, message: nil, preferredStyle: .Alert)
 			
@@ -33,7 +33,7 @@ extension NSError {
 	}
 	
 	#else
-	func display() {
+	public func display() {
 		dispatch_async(dispatch_get_main_queue()) {
 			var alert = NSAlert(error: self)
 			alert.runModal()
