@@ -1,16 +1,15 @@
 //
-//  Chronicle_Tests.swift
-//  Chronicle Tests
+//  Listener_MacTests.swift
+//  Listener_MacTests
 //
-//  Created by Ben Gottlieb on 2/9/15.
+//  Created by Ben Gottlieb on 6/4/15.
 //  Copyright (c) 2015 Stand Alone, inc. All rights reserved.
 //
 
-import UIKit
+import Cocoa
 import XCTest
-import Chronicle
 
-class Chronicle_Tests: XCTestCase {
+class Listener_MacTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,8 +22,9 @@ class Chronicle_Tests: XCTestCase {
     }
     
     func testExample() {
-
-	}
+        // This is an example of a functional test case.
+        XCTAssert(true, "Pass")
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
