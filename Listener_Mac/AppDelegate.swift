@@ -19,7 +19,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		self.listener.start()
 	}
-
+	
+	@IBAction func connect(sender: AnyObject?) {
+		self.listener.start()
+	}
+	
+	@IBAction func disconnect(sender: AnyObject?) {
+		self.listener.stop()
+	}
+	
+	@IBAction func ping(sender: AnyObject?) {
+		self.listener.sendObject("test")
+	}
+	
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
 	}

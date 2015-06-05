@@ -14,7 +14,9 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	public var session: MCSession
 	public var localPeerID: MCPeerID
 	public var browser: MCNearbyServiceBrowser!
+	public var queue: dispatch_queue_t
 	
+	public var browsing = false
 	public var connectedPeers = Set<MCPeerID>()
 
 	public override init() {		
@@ -23,6 +25,10 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 		#else
 			localPeerID = MCPeerID(displayName: NSHost.currentHost().localizedName)
 		#endif
+
+		var attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, 0)
+		queue = dispatch_queue_create("listener-queue", attr)
+		
 		session = MCSession(peer: localPeerID)
 		
 		super.init()
@@ -30,20 +36,35 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	}
 	
 	public func stop() {
-		println("stopping")
-		self.browser.stopBrowsingForPeers()
+		dispatch_async(self.queue) {
+			if !self.browsing { return }
+			self.browsing = false
+			self.browser.stopBrowsingForPeers()
+		}
 	}
 	
 	public func start() {
-		if self.browser == nil {
-			self.browser = MCNearbyServiceBrowser(peer: self.localPeerID, serviceType: MCSESSION_SERVICE_NAME)
-			self.browser.delegate = self
+		dispatch_async(self.queue) {
+			if self.browsing { return }
+			if self.browser == nil {
+				self.browser = MCNearbyServiceBrowser(peer: self.localPeerID, serviceType: MCSESSION_SERVICE_NAME)
+				self.browser.delegate = self
+			}
+			
+			self.browsing = true
+			self.browser.startBrowsingForPeers()
 		}
-		
-		println("starting")
-		self.browser.startBrowsingForPeers()
 	}
 
+	public func disconnectAllLoggers() {
+		self.session.disconnect()
+	}
+	
+	public func sendObject(object: AnyObject) {
+		var error: NSError?
+		
+		self.session.sendData(NSKeyedArchiver.archivedDataWithRootObject(object), toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+	}
 
 	//=============================================================================================
 	//MARK: Browser Delegate
@@ -51,7 +72,6 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
 		
 		self.connectedPeers.insert(peerID)
-		println("Connecting to \(peerID)")
 		self.browser.invitePeer(peerID, toSession: self.session, withContext: nil, timeout: 20.0)
 	}
 
@@ -72,14 +92,19 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	}
 	
 	public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-		switch state {
-		case .Connected: self.connectedPeers.insert(peerID)
-		case .Connecting: fallthrough
-		case .NotConnected:
-			self.connectedPeers.remove(peerID)
-		}
+		if peerID.displayName.rangeOfString("iPhone Simulator") != nil { return }
 		
-		println("peer \(peerID) changed state: \(state.rawValue)")
+		dispatch_async(self.queue) {
+			switch state {
+			case .Connected: self.connectedPeers.insert(peerID)
+			case .Connecting: break
+			case .NotConnected:
+				self.connectedPeers.remove(peerID)
+				self.stop()
+				self.session.disconnect()
+				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), self.queue, { self.start() })
+			}
+		}
 	}
 	
 	public func session(session: MCSession!, didReceiveStream: NSInputStream!, withName: String!, fromPeer: MCPeerID!) {}
