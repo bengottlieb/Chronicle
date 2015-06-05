@@ -48,7 +48,11 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	}
 	
 	public override var description: String {
-		var text = "\(self.deviceName) -- \(self.deviceType) -- \(self.deviceIdentifier)"
+		var formatter = NSDateFormatter()
+		formatter.timeStyle = .MediumStyle
+		formatter.dateStyle = .ShortStyle
+		var dateString = formatter.stringFromDate(self.date)
+		var text = "\(dateString): \(self.deviceName) -- \(self.deviceType) -- \(self.deviceIdentifier)"
 		
 		return text
 	}
