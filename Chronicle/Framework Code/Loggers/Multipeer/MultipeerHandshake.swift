@@ -18,6 +18,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	public var deviceType: String
 	public var deviceIdentifier: String
 	public var date = NSDate()
+	public var uuid: NSUUID? = NSUUID()
 	
 	override public init() {
 		#if os(iOS)
@@ -37,6 +38,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 		deviceType = aDecoder.decodeObjectForKey("type") as? String ?? ""
 		deviceIdentifier = aDecoder.decodeObjectForKey("id") as? String ?? ""
 		date = aDecoder.decodeObjectForKey("date") as? NSDate ?? NSDate()
+		if let string = aDecoder.decodeObjectForKey("uuid") as? String { uuid = NSUUID(UUIDString: string) }
 		super.init()
 	}
 	
@@ -45,6 +47,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 		aCoder.encodeObject(self.deviceType, forKey: "type")
 		aCoder.encodeObject(self.deviceIdentifier, forKey: "id")
 		aCoder.encodeObject(self.date, forKey: "date")
+		if let uuid = self.uuid { aCoder.encodeObject(uuid.UUIDString, forKey: "uuid") }
 	}
 	
 	public override var description: String {
