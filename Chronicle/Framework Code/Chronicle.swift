@@ -8,8 +8,8 @@
 
 import Foundation
 
-public func clog(message: String, priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
-	var message = Message(text: message, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+public func clog(text: String, priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
+	var message = Message(text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 	
 	Chronicle.instance.logMessage(message)
 }

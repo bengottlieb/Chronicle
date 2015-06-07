@@ -17,12 +17,30 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn7-XC-Ce3">
-                                <rect key="frame" x="16" y="28" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="16" y="28" width="93" height="30"/>
+                                <state key="normal" title="Log Message">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logit" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gOr-yp-RFN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI4-CP-7aY">
+                                <rect key="frame" x="16" y="66" width="59" height="30"/>
+                                <state key="normal" title="Log Star">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logStar" destination="vXZ-lx-hvc" eventType="touchUpInside" id="o7D-uU-lkF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBD-gG-Cko">
+                                <rect key="frame" x="16" y="104" width="75" height="30"/>
+                                <state key="normal" title="Log Check">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logCheck" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HSG-ZV-aah"/>
                                 </connections>
                             </button>
                         </subviews>

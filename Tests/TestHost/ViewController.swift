@@ -22,8 +22,23 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func logit() {
-		clog("message from me", tags: ["important", "debug"])
+		clog("new message \(NSDate())", tags: ["important", "debug"])
 	}
+	
+	@IBAction func logStar() {
+		if let image = UIImage(named: "star") {
+			clog(image, text: "star")
+		}
+	}
+	
+	
+	@IBAction func logCheck() {
+		if let image = UIImage(named: "check") {
+			clog(image, text: "check")
+		}
+	}
+	
+	
 
 }
 

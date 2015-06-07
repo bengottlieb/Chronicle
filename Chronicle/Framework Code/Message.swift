@@ -21,15 +21,10 @@ public class Message: NSObject, NSCoding, Printable {
 	public var column: Int?
 	public var file: String?
 	public var function: String?
-	public var date: NSDate
+	public var date: NSDate = NSDate()
 	
-	override init() {
-		date = NSDate()
+	public init(text t: String?, priority p: Priority = DEFAULT_PRIORITY, tags tg: [String]? = nil, file: StaticString? = nil, function: StaticString? = nil, line: Int? = nil, column: Int? = nil) {
 		super.init()
-	}
-	
-	public convenience init(text t: String, priority p: Priority = DEFAULT_PRIORITY, tags tg: [String]? = nil, file: StaticString? = nil, function: StaticString? = nil, line: Int? = nil, column: Int? = nil) {
-		self.init()
 		
 		self.text = t
 		self.priority = p
@@ -41,16 +36,9 @@ public class Message: NSObject, NSCoding, Printable {
 	}
 	
 	public convenience init(error e: NSError, text t: String? = nil, priority p: Priority = DEFAULT_PRIORITY, tags tg: [String]? = nil, file: StaticString? = nil, function: StaticString? = nil, line: Int? = nil, column: Int? = nil) {
-		self.init()
+		self.init(text: t, priority: p, tags: tg, file: file, function: function, line: line, column: column)
 		
 		self.error = e
-		self.text = t
-		self.priority = p
-		self.tags = tg
-		if let file = file { self.file = "\(file)" }
-		if let function = function { self.function = "\(function)" }
-		self.line = line
-		self.column = column
 	}
 	
 	public func encodeWithCoder(aCoder: NSCoder) {

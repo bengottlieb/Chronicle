@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		Chronicle.instance.addLogger(ConsoleLogger())
 		
 		
-		clog("message from me", tags: ["important", "debug"])
+		clog("starting up!", tags: ["important", "debug"])
 		
 		return true
 	}
