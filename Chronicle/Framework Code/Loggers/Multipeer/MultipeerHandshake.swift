@@ -65,7 +65,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 		formatter.timeStyle = .MediumStyle
 		formatter.dateStyle = .ShortStyle
 		var dateString = formatter.stringFromDate(self.date)
-		var text = "\(dateString): \(self.deviceName) -- \(self.deviceType) -- \(self.deviceIdentifier)"
+		var text = "\(dateString): \(self.deviceName) -- \(self.deviceType) -- \(self.deviceIdentifier) -- \(self.appIdentifier) -- \(self.appName)"
 		
 		return text
 	}
