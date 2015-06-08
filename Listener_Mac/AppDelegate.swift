@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		// Insert code here to initialize your application
 		
+		LogWindowManager.instance.setup()
 		self.listener.start()
 	}
 	

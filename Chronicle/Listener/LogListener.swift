@@ -70,7 +70,6 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	//MARK: Browser Delegate
 
 	public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-		
 		self.connectedPeers.insert(peerID)
 		self.browser.invitePeer(peerID, toSession: self.session, withContext: nil, timeout: 20.0)
 	}
@@ -89,7 +88,12 @@ public class LogListener: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDel
 	
 	public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
 		if let object: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithData(data) {
-			println("received \(object)")
+			if let handshake = object as? MultiPeerHandshake {
+				LogHistoryManager.instance.registerLogHistory(MultiPeerLogHistory(handshake: handshake))
+			} else if let message = object as? Message {
+				LogHistoryManager.instance.routeMessage(message)
+			}
+			
 		}
 	}
 	

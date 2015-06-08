@@ -54,6 +54,13 @@
 		B5A85AB21B21F50F003463BA /* MultiPeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */; };
 		B5A85AB61B23E93C003463BA /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB51B23E93C003463BA /* ImageMessage.swift */; };
 		B5A85AB91B23E9CC003463BA /* ImageMessageMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB81B23E9CC003463BA /* ImageMessageMac.swift */; };
+		B5EA0C561B2503B300D29598 /* LogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C541B2503B300D29598 /* LogWindowController.swift */; };
+		B5EA0C571B2503B300D29598 /* LogWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5EA0C551B2503B300D29598 /* LogWindowController.xib */; };
+		B5EA0C5B1B25115800D29598 /* LogHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C591B25114D00D29598 /* LogHistory.swift */; };
+		B5EA0C5C1B25115800D29598 /* LogHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C591B25114D00D29598 /* LogHistory.swift */; };
+		B5EA0C5E1B25181300D29598 /* LogHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C5D1B25181300D29598 /* LogHistoryManager.swift */; };
+		B5EA0C5F1B25181300D29598 /* LogHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C5D1B25181300D29598 /* LogHistoryManager.swift */; };
+		B5EA0C621B25286900D29598 /* LogWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA0C611B25286900D29598 /* LogWindowManager.swift */; };
 		B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Chronicle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -134,8 +141,6 @@
 		B58D648F1A899094005A0002 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5A85A481B207ABD003463BA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B5A85A4B1B207AD6003463BA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		B5A85A691B20D8F7003463BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5A85A6A1B20D8F7003463BA /* ChronicleListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleListenerTests.swift; sourceTree = "<group>"; };
 		B5A85A761B20DAD5003463BA /* Listener_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listener_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A85A791B20DAD5003463BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A85A7A1B20DAD5003463BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +156,11 @@
 		B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerHandshake.swift; sourceTree = "<group>"; };
 		B5A85AB51B23E93C003463BA /* ImageMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		B5A85AB81B23E9CC003463BA /* ImageMessageMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMessageMac.swift; sourceTree = "<group>"; };
+		B5EA0C541B2503B300D29598 /* LogWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogWindowController.swift; path = Windows/LogWindowController.swift; sourceTree = "<group>"; };
+		B5EA0C551B2503B300D29598 /* LogWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogWindowController.xib; path = Windows/LogWindowController.xib; sourceTree = "<group>"; };
+		B5EA0C591B25114D00D29598 /* LogHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogHistory.swift; sourceTree = "<group>"; };
+		B5EA0C5D1B25181300D29598 /* LogHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogHistoryManager.swift; sourceTree = "<group>"; };
+		B5EA0C611B25286900D29598 /* LogWindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +220,6 @@
 				B58D64661A898F81005A0002 /* Chronicle_Mac */,
 				B58D64691A898F81005A0002 /* Chronicle_iOS */,
 				B504E6991A896E82001B414B /* Chronicle Tests */,
-				B5A85A671B20D8F7003463BA /* ChronicleListenerTests */,
 				B5A85A771B20DAD5003463BA /* Listener_Mac */,
 				B5A85A881B20DAD6003463BA /* Listener_MacTests */,
 				B504E6141A89230F001B414B /* Products */,
@@ -297,23 +306,6 @@
 			path = TestHost;
 			sourceTree = "<group>";
 		};
-		B5A85A671B20D8F7003463BA /* ChronicleListenerTests */ = {
-			isa = PBXGroup;
-			children = (
-				B5A85A6A1B20D8F7003463BA /* ChronicleListenerTests.swift */,
-				B5A85A681B20D8F7003463BA /* Supporting Files */,
-			);
-			path = ChronicleListenerTests;
-			sourceTree = "<group>";
-		};
-		B5A85A681B20D8F7003463BA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B5A85A691B20D8F7003463BA /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B5A85A771B20DAD5003463BA /* Listener_Mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +313,7 @@
 				B5A85A7C1B20DAD5003463BA /* Images.xcassets */,
 				B5A85A7E1B20DAD5003463BA /* MainMenu.xib */,
 				B5A85A781B20DAD5003463BA /* Supporting Files */,
+				B5EA0C581B2503BE00D29598 /* Log Window */,
 			);
 			path = Listener_Mac;
 			sourceTree = "<group>";
@@ -354,6 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				B5A85AA51B21F36A003463BA /* LogListener.swift */,
+				B5EA0C591B25114D00D29598 /* LogHistory.swift */,
+				B5EA0C5D1B25181300D29598 /* LogHistoryManager.swift */,
 			);
 			name = Listener;
 			path = Chronicle/Listener;
@@ -375,6 +370,16 @@
 				B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */,
 			);
 			path = Multipeer;
+			sourceTree = "<group>";
+		};
+		B5EA0C581B2503BE00D29598 /* Log Window */ = {
+			isa = PBXGroup;
+			children = (
+				B5EA0C541B2503B300D29598 /* LogWindowController.swift */,
+				B5EA0C611B25286900D29598 /* LogWindowManager.swift */,
+				B5EA0C551B2503B300D29598 /* LogWindowController.xib */,
+			);
+			name = "Log Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -604,6 +609,7 @@
 			files = (
 				B5A85A7D1B20DAD5003463BA /* Images.xcassets in Resources */,
 				B5A85A801B20DAD5003463BA /* MainMenu.xib in Resources */,
+				B5EA0C571B2503B300D29598 /* LogWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,8 +655,10 @@
 				B5A85AAE1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85AB11B21F50F003463BA /* MultiPeerHandshake.swift in Sources */,
 				B5A85A4C1B207AD6003463BA /* Message.swift in Sources */,
+				B5EA0C5E1B25181300D29598 /* LogHistoryManager.swift in Sources */,
 				B5A85AAC1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
 				B58D647F1A898FBD005A0002 /* Chronicle.swift in Sources */,
+				B5EA0C5C1B25115800D29598 /* LogHistory.swift in Sources */,
 				B5A85AB61B23E93C003463BA /* ImageMessage.swift in Sources */,
 				B5A85A491B207ABD003463BA /* Logger.swift in Sources */,
 				B5A85A9A1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
@@ -673,8 +681,10 @@
 				B5A85AAF1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
 				B5A85AB21B21F50F003463BA /* MultiPeerHandshake.swift in Sources */,
 				B5A85A4D1B207AD6003463BA /* Message.swift in Sources */,
+				B5EA0C5F1B25181300D29598 /* LogHistoryManager.swift in Sources */,
 				B5A85AB91B23E9CC003463BA /* ImageMessageMac.swift in Sources */,
 				B5A85AAD1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
+				B5EA0C5B1B25115800D29598 /* LogHistory.swift in Sources */,
 				B58D64831A898FBE005A0002 /* Chronicle.swift in Sources */,
 				B5A85A4A1B207ABD003463BA /* Logger.swift in Sources */,
 				B5A85A9B1B20E93E003463BA /* NSErrorAdditions.swift in Sources */,
@@ -686,7 +696,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EA0C561B2503B300D29598 /* LogWindowController.swift in Sources */,
 				B5A85A7B1B20DAD5003463BA /* AppDelegate.swift in Sources */,
+				B5EA0C621B25286900D29598 /* LogWindowManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
