@@ -9,6 +9,17 @@
 import Foundation
 import AppKit
 
+
+public func clog(@autoclosure image: () -> NSImage, @autoclosure text: () -> String = { "" }(), priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+	
+	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
+	
+	var message = ImageMessage(image: image(), text: text(), priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+	
+	Chronicle.instance.logMessage(message)
+	return message
+}
+
 public func clog(image: NSImage, text: String = "", priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
 	var message = ImageMessage(image: image, text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 	

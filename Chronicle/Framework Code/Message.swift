@@ -16,10 +16,13 @@ public class Message: NSObject, NSCoding, Printable {
 	public var priority = DEFAULT_PRIORITY
 	public var error: NSError?
 	public var tags: [String]?
+	public var payload: NSData?
+	
 	public var line: Int?
 	public var column: Int?
 	public var file: String?
 	public var function: String?
+	
 	public var date: NSDate = NSDate()
 	
 	var senderUUID: NSUUID?		//used by the multipeer logger
@@ -55,6 +58,8 @@ public class Message: NSObject, NSCoding, Printable {
 		if let line = self.line { aCoder.encodeInteger(line, forKey: "line") }
 		if let column = self.column { aCoder.encodeInteger(column, forKey: "column") }
 		if let uuid = self.senderUUID { aCoder.encodeObject(uuid.UUIDString, forKey: "sender") }
+
+		if let payload = self.payload { aCoder.encodeObject(payload, forKey: "payload") }
 	}
 	
 	public required init(coder aDecoder: NSCoder) {
@@ -69,6 +74,8 @@ public class Message: NSObject, NSCoding, Printable {
 		if aDecoder.containsValueForKey("line") { self.line = aDecoder.decodeIntegerForKey("line") }
 		if aDecoder.containsValueForKey("column") { self.column = aDecoder.decodeIntegerForKey("column") }
 		if aDecoder.containsValueForKey("sender") { self.senderUUID = NSUUID(UUIDString: aDecoder.decodeObjectForKey("sender") as! String)! }
+	
+		if aDecoder.containsValueForKey("payload") { self.payload = aDecoder.decodeObjectForKey("payload") as? NSData }
 	}
 	
 	public override var description: String {
@@ -88,5 +95,5 @@ public class Message: NSObject, NSCoding, Printable {
 		return text
 	}
 	
-	var data: NSData { return NSKeyedArchiver.archivedDataWithRootObject(self) }
+	var archivedData: NSData { return NSKeyedArchiver.archivedDataWithRootObject(self) }
 }

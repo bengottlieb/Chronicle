@@ -13,11 +13,22 @@ let DEFAULT_PRIORITY = Message.Priority.Low
 
 var isLoggingEnabled = true
 
-public func clog(@autoclosure text: () -> String, priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+public func clog(@autoclosure text: () -> String, priority: Message.Priority = Chronicle.instance.defaultPriority, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
 	
 	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
 	
 	var message = Message(text: text(), priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+	
+	Chronicle.instance.logMessage(message)
+	return message
+}
+
+public func clog(@autoclosure data: () -> NSData, @autoclosure text: () -> String, priority: Message.Priority = Chronicle.instance.defaultPriority, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+	
+	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
+	
+	var message = Message(text: text(), priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+	message.payload = data()
 	
 	Chronicle.instance.logMessage(message)
 	return message
@@ -29,6 +40,7 @@ public class Chronicle: NSObject {
 	public static var instance = Chronicle()
 	
 	public var minimumVisiblePriority = Message.Priority.Low
+	public var defaultPriority = Message.Priority.Low
 	
 	public class var loggingEnabled: Bool {
 		get { return isLoggingEnabled }

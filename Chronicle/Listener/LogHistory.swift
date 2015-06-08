@@ -40,7 +40,7 @@ public class LogHistory: NSObject {
 			self.viewer?.logHistoryDidChange()
 			
 			if let messageURL = self.storageURL?.URLByAppendingPathComponent(String(format: "%10d", self.logs.count)) {
-				message.data.writeToURL(messageURL, atomically: true)
+				message.archivedData.writeToURL(messageURL, atomically: true)
 			}
 		}
 	}

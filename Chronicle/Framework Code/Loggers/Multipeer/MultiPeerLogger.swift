@@ -39,7 +39,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	func sendMessage(message: Message) {		//always called within the log's queue
 		if self.connected {
 			var error: NSError?
-			self.session.sendData(message.data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+			self.session.sendData(message.archivedData, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
 			if let error = error {
 				println("error while sending to \(self.session.connectedPeers): \(error)")
 			}

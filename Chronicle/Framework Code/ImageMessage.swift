@@ -8,10 +8,36 @@
 
 import Foundation
 
-public func clog(image: UIImage, text: String = "", priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
-	var message = ImageMessage(image: image, text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+public func clog(@autoclosure image: () -> UIImage, @autoclosure text: () -> String = { "" }(), priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+	
+	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
+	
+	var message = ImageMessage(image: image(), text: text(), priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 	
 	Chronicle.instance.logMessage(message)
+	return message
+}
+
+public func clog(view: UIView, @autoclosure text: () -> String = { "" }(), priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+	
+	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
+	
+	var snapped = view.snapshotViewAfterScreenUpdates(true)
+	
+	UIGraphicsBeginImageContextWithOptions(snapped.bounds.size, true, 0)
+	snapped.drawViewHierarchyInRect(snapped.bounds, afterScreenUpdates: false)
+	var image = UIGraphicsGetImageFromCurrentImageContext()
+	UIGraphicsEndImageContext()
+	
+	return clog(image, text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
+}
+
+public func clog_screen(@autoclosure text: () -> String = { "" }(), priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) -> Message? {
+	
+	if !isLoggingEnabled || priority.rawValue < Chronicle.instance.minimumVisiblePriority.rawValue { return nil }
+	
+	var snapped = UIScreen.mainScreen().snapshotViewAfterScreenUpdates(true)
+	return clog(snapped, text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 }
 
 
