@@ -8,7 +8,6 @@
 
 import Foundation
 
-let DEFAULT_PRIORITY = Message.Priority.Low
 
 public class Message: NSObject, NSCoding, Printable {
 	public enum Priority: Int { case None, Low, Medium, High, Critical }

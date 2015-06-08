@@ -41,7 +41,9 @@ class LogWindowController: NSWindowController, LogHistoryViewer, NSTableViewData
 		var view = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as? NSTableCellView
 		var message = self.history.logs[row]
 		
-		view?.textField?.stringValue = message.text ?? ""
+		var text = message.text ?? "<empty log entry>"
+		view?.textField?.stringValue = text
+		view?.autoresizingMask = .ViewWidthSizable | .ViewHeightSizable
 		return view
 
 //		var label = NSTextField(frame: CGRect(x: 0, y: 0, width: 400, height: 20))

@@ -16,7 +16,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="195" y="964" width="596" height="477"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="-1" width="596" height="477"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,13 +28,13 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="1zO-qi-Rya" viewBased="YES" id="bXs-6a-DRe">
-                                    <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="597" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="500" minWidth="40" maxWidth="1000" id="kUr-cU-bQk">
+                                        <tableColumn width="594" minWidth="40" maxWidth="1000000" id="kUr-cU-bQk">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -48,18 +48,24 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="Sek-Ng-dgs">
-                                                    <rect key="frame" x="1" y="1" width="500" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="594" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kA-Db-6pt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2kA-Db-6pt">
+                                                            <rect key="frame" x="-2" y="0.0" width="598" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="KO3-HM-LnS">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="2kA-Db-6pt" secondAttribute="trailing" id="4bH-fu-AjR"/>
+                                                        <constraint firstItem="2kA-Db-6pt" firstAttribute="leading" secondItem="Sek-Ng-dgs" secondAttribute="leading" id="Lrf-UK-d6i"/>
+                                                        <constraint firstAttribute="bottom" secondItem="2kA-Db-6pt" secondAttribute="bottom" id="P0l-qu-t4E"/>
+                                                        <constraint firstItem="2kA-Db-6pt" firstAttribute="top" secondItem="Sek-Ng-dgs" secondAttribute="top" id="SYl-Sv-rtK"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="textField" destination="2kA-Db-6pt" id="VXJ-ei-fYf"/>
                                                     </connections>
@@ -75,7 +81,7 @@
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="jMQ-2g-0pc">
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="jMQ-2g-0pc">
                             <rect key="frame" x="1" y="119" width="223" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>

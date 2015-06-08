@@ -38,9 +38,44 @@ public class LogHistory: NSObject {
 		dispatch_async(self.queue) {
 			self.logs.append(message)
 			self.viewer?.logHistoryDidChange()
+			
+			if let messageURL = self.storageURL?.URLByAppendingPathComponent(String(format: "%10d", self.logs.count)) {
+				message.data.writeToURL(messageURL, atomically: true)
+			}
 		}
 	}
 	
+	public var storageURL: NSURL? {
+		didSet {
+			var error: NSError?
+			if let url = self.storageURL {
+				if !NSFileManager.defaultManager().createDirectoryAtURL(url, withIntermediateDirectories: true, attributes: nil, error: &error) { println("error creating directory at \(url.absoluteString): \(error!)") }
+				self.loadLogs()
+			}
+		}
+	}
+	
+	func loadLogs() {
+		dispatch_async(self.queue) {
+			self.logs = []
+			
+			if let url = self.storageURL {
+				var error: NSError?
+				var names = NSFileManager.defaultManager().contentsOfDirectoryAtPath(url.path!, error: &error) as! [String]
+				
+				for name in sorted(names, <) {
+					var fileURL = url.URLByAppendingPathComponent(name)
+					if let data = NSData(contentsOfURL: fileURL), message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Message {
+						self.logs.append(message)
+					}
+				}
+				
+				dispatch_async(dispatch_get_main_queue()) {
+					self.viewer?.logHistoryDidChange()
+				}
+			}
+		}
+	}
 }
 
 class MultiPeerLogHistory: LogHistory {

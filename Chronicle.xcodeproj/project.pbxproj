@@ -216,7 +216,6 @@
 			children = (
 				B58D64741A898F81005A0002 /* Framework Code */,
 				B504E66A1A896980001B414B /* BuildFramework.sh */,
-				B5A85AA41B21F36A003463BA /* Listener */,
 				B58D64661A898F81005A0002 /* Chronicle_Mac */,
 				B58D64691A898F81005A0002 /* Chronicle_iOS */,
 				B504E6991A896E82001B414B /* Chronicle Tests */,
@@ -288,6 +287,7 @@
 				B5A85AB81B23E9CC003463BA /* ImageMessageMac.swift */,
 				B5A85A991B20E93E003463BA /* NSErrorAdditions.swift */,
 				B5A85AA81B21F3AD003463BA /* Loggers */,
+				B5A85AA41B21F36A003463BA /* Listener */,
 			);
 			name = "Framework Code";
 			path = "Chronicle/Framework Code";
@@ -351,7 +351,7 @@
 				B5EA0C5D1B25181300D29598 /* LogHistoryManager.swift */,
 			);
 			name = Listener;
-			path = Chronicle/Listener;
+			path = ../Listener;
 			sourceTree = "<group>";
 		};
 		B5A85AA81B21F3AD003463BA /* Loggers */ = {
