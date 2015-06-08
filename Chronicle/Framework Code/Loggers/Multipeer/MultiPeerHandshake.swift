@@ -1,5 +1,5 @@
 //
-//  MultipeerHandshake.swift
+//  MultiPeerHandshake.swift
 //  Chronicle
 //
 //  Created by Ben Gottlieb on 6/5/15.
@@ -13,7 +13,7 @@ import Foundation
 	import AppKit
 #endif
 
-public class MultipeerHandshake: NSObject, NSCoding {
+public class MultiPeerHandshake: NSObject, NSCoding {
 	public var deviceName: String
 	public var deviceType: String
 	public var deviceIdentifier: String

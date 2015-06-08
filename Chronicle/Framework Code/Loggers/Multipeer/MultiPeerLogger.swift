@@ -141,7 +141,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	func sendHandshake() {
 		var error: NSError?
 		
-		self.session.sendData(MultipeerHandshake(sessionUUID: self.sessionUUID).data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+		self.session.sendData(MultiPeerHandshake(sessionUUID: self.sessionUUID).data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
 		if let error = error {
 			println("error while sending to \(self.session.connectedPeers): \(error)")
 		}

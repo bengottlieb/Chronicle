@@ -50,8 +50,8 @@
 		B5A85AAD1B21F3AD003463BA /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */; };
 		B5A85AAE1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */; };
 		B5A85AAF1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */; };
-		B5A85AB11B21F50F003463BA /* MultipeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */; };
-		B5A85AB21B21F50F003463BA /* MultipeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */; };
+		B5A85AB11B21F50F003463BA /* MultiPeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */; };
+		B5A85AB21B21F50F003463BA /* MultiPeerHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */; };
 		B5A85AB61B23E93C003463BA /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB51B23E93C003463BA /* ImageMessage.swift */; };
 		B5A85AB91B23E9CC003463BA /* ImageMessageMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A85AB81B23E9CC003463BA /* ImageMessageMac.swift */; };
 		B5EC330D1B21E469002A9F25 /* Chronicle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Chronicle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -148,7 +148,7 @@
 		B5A85AA51B21F36A003463BA /* LogListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogListener.swift; sourceTree = "<group>"; };
 		B5A85AA91B21F3AD003463BA /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerLogger.swift; sourceTree = "<group>"; };
-		B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHandshake.swift; sourceTree = "<group>"; };
+		B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerHandshake.swift; sourceTree = "<group>"; };
 		B5A85AB51B23E93C003463BA /* ImageMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		B5A85AB81B23E9CC003463BA /* ImageMessageMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMessageMac.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -372,7 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				B5A85AAB1B21F3AD003463BA /* MultiPeerLogger.swift */,
-				B5A85AB01B21F50F003463BA /* MultipeerHandshake.swift */,
+				B5A85AB01B21F50F003463BA /* MultiPeerHandshake.swift */,
 			);
 			path = Multipeer;
 			sourceTree = "<group>";
@@ -647,7 +647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5A85AAE1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
-				B5A85AB11B21F50F003463BA /* MultipeerHandshake.swift in Sources */,
+				B5A85AB11B21F50F003463BA /* MultiPeerHandshake.swift in Sources */,
 				B5A85A4C1B207AD6003463BA /* Message.swift in Sources */,
 				B5A85AAC1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
 				B58D647F1A898FBD005A0002 /* Chronicle.swift in Sources */,
@@ -671,7 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5A85AAF1B21F3AD003463BA /* MultiPeerLogger.swift in Sources */,
-				B5A85AB21B21F50F003463BA /* MultipeerHandshake.swift in Sources */,
+				B5A85AB21B21F50F003463BA /* MultiPeerHandshake.swift in Sources */,
 				B5A85A4D1B207AD6003463BA /* Message.swift in Sources */,
 				B5A85AB91B23E9CC003463BA /* ImageMessageMac.swift in Sources */,
 				B5A85AAD1B21F3AD003463BA /* ConsoleLogger.swift in Sources */,
