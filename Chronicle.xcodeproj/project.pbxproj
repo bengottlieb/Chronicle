@@ -375,8 +375,8 @@
 		B5EA0C581B2503BE00D29598 /* Log Window */ = {
 			isa = PBXGroup;
 			children = (
-				B5EA0C541B2503B300D29598 /* LogWindowController.swift */,
 				B5EA0C611B25286900D29598 /* LogWindowManager.swift */,
+				B5EA0C541B2503B300D29598 /* LogWindowController.swift */,
 				B5EA0C551B2503B300D29598 /* LogWindowController.xib */,
 			);
 			name = "Log Window";

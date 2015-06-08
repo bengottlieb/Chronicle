@@ -22,8 +22,14 @@ class LogWindowManager: NSObject {
 		
 	}
 	
+	var controllers: [NSUUID: LogWindowController] = [:]
 	
 	func historyRegistered(note: NSNotification) {
-		
+		if let history = note.object as? LogHistory {
+			var controller = LogWindowController(history: history)
+			self.controllers[history.sessionUUID] = controller
+			
+			controller.showWindow(nil)
+		}
 	}
 }

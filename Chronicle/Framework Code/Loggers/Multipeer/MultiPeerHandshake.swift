@@ -22,8 +22,9 @@ public class MultiPeerHandshake: NSObject, NSCoding {
 	public var appIdentifier: String
 	public var appName: String
 	public var version = CHRONICLE_VERSION
+	public var sessionStartedAt: NSDate
 	
-	public init(sessionUUID uuid: NSUUID) {
+	public init(sessionUUID uuid: NSUUID, startedAt: NSDate) {
 		#if os(iOS)
 			deviceName = UIDevice.currentDevice().name
 			deviceType = UIDevice.currentDevice().model
@@ -34,6 +35,7 @@ public class MultiPeerHandshake: NSObject, NSCoding {
 			deviceIdentifier = ""
 		#endif
 		
+		sessionStartedAt = startedAt
 		sessionUUID = uuid
 		appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as? String ?? ""
 		appName = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String ?? ""
@@ -43,7 +45,8 @@ public class MultiPeerHandshake: NSObject, NSCoding {
 	
 	public required init(coder aDecoder: NSCoder) {
 		version = aDecoder.decodeIntegerForKey("v") ?? 0
-		deviceName = aDecoder.decodeObjectForKey("dev-name") as? String ?? ""
+		sessionStartedAt = aDecoder.decodeObjectForKey("start") as? NSDate ?? NSDate()
+ 		deviceName = aDecoder.decodeObjectForKey("dev-name") as? String ?? ""
 		deviceType = aDecoder.decodeObjectForKey("type") as? String ?? ""
 		deviceIdentifier = aDecoder.decodeObjectForKey("dev-id") as? String ?? ""
 		appIdentifier = aDecoder.decodeObjectForKey("app-id") as? String ?? ""
@@ -54,6 +57,7 @@ public class MultiPeerHandshake: NSObject, NSCoding {
 	}
 	
 	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(self.sessionStartedAt, forKey: "start")
 		aCoder.encodeInteger(self.version, forKey: "v")
 		aCoder.encodeObject(self.deviceName, forKey: "dev-name")
 		aCoder.encodeObject(self.deviceType, forKey: "type")
