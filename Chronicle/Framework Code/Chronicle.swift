@@ -8,6 +8,8 @@
 
 import Foundation
 
+public let CHRONICLE_VERSION = 1
+
 public func clog(text: String, priority: Message.Priority = DEFAULT_PRIORITY, tags: [String]? = nil, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: Int = __LINE__, column: Int = __COLUMN__) {
 	var message = Message(text: text, priority: priority, tags: tags, file: file, function: function, line: line, column: column)
 	

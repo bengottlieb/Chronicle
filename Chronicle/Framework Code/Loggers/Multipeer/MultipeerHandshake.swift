@@ -21,6 +21,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	public var sessionUUID: NSUUID?
 	public var appIdentifier: String
 	public var appName: String
+	public var version = CHRONICLE_VERSION
 	
 	public init(sessionUUID uuid: NSUUID) {
 		#if os(iOS)
@@ -41,6 +42,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	}
 	
 	public required init(coder aDecoder: NSCoder) {
+		version = aDecoder.decodeIntegerForKey("v") ?? 0
 		deviceName = aDecoder.decodeObjectForKey("dev-name") as? String ?? ""
 		deviceType = aDecoder.decodeObjectForKey("type") as? String ?? ""
 		deviceIdentifier = aDecoder.decodeObjectForKey("dev-id") as? String ?? ""
@@ -52,6 +54,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	}
 	
 	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeInteger(self.version, forKey: "v")
 		aCoder.encodeObject(self.deviceName, forKey: "dev-name")
 		aCoder.encodeObject(self.deviceType, forKey: "type")
 		aCoder.encodeObject(self.deviceIdentifier, forKey: "dev-id")
