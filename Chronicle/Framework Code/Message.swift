@@ -23,6 +23,8 @@ public class Message: NSObject, NSCoding, Printable {
 	public var function: String?
 	public var date: NSDate = NSDate()
 	
+	var senderUUID: NSUUID?		//used by the multipeer logger
+	
 	public init(text t: String?, priority p: Priority = DEFAULT_PRIORITY, tags tg: [String]? = nil, file: StaticString? = nil, function: StaticString? = nil, line: Int? = nil, column: Int? = nil) {
 		super.init()
 		
@@ -53,6 +55,7 @@ public class Message: NSObject, NSCoding, Printable {
 		if self.priority != DEFAULT_PRIORITY { aCoder.encodeInteger(self.priority.rawValue, forKey: "priority") }
 		if let line = self.line { aCoder.encodeInteger(line, forKey: "line") }
 		if let column = self.column { aCoder.encodeInteger(column, forKey: "column") }
+		if let uuid = self.senderUUID { aCoder.encodeObject(uuid.UUIDString, forKey: "sender") }
 	}
 	
 	public required init(coder aDecoder: NSCoder) {
@@ -66,6 +69,7 @@ public class Message: NSObject, NSCoding, Printable {
 		if let function = aDecoder.decodeObjectForKey("function") as? String { self.function = function }
 		if aDecoder.containsValueForKey("line") { self.line = aDecoder.decodeIntegerForKey("line") }
 		if aDecoder.containsValueForKey("column") { self.column = aDecoder.decodeIntegerForKey("column") }
+		if aDecoder.containsValueForKey("sender") { self.senderUUID = NSUUID(UUIDString: aDecoder.decodeObjectForKey("sender") as! String)! }
 	}
 	
 	public override var description: String {

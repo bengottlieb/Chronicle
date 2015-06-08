@@ -18,6 +18,7 @@ public let MCSESSION_SERVICE_NAME = "chronicle-log"
 public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate {
 	public var session: MCSession
 	public var localPeerID: MCPeerID
+	public var sessionUUID = NSUUID()
 	public var advertiser: MCNearbyServiceAdvertiser!
 	public var connectedPeers = Set<MCPeerID>()
 	public var advertising = false
@@ -26,6 +27,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	
 	public override func logMessage(message: Message) {
 		dispatch_async(self.queue, {
+			message.senderUUID = self.sessionUUID
 			if self.connected {
 				self.sendMessage(message)
 			} else {
@@ -139,7 +141,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	func sendHandshake() {
 		var error: NSError?
 		
-		self.session.sendData(MultipeerHandshake().data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
+		self.session.sendData(MultipeerHandshake(sessionUUID: self.sessionUUID).data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
 		if let error = error {
 			println("error while sending to \(self.session.connectedPeers): \(error)")
 		}

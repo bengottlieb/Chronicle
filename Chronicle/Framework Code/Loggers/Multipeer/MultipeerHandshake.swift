@@ -18,11 +18,11 @@ public class MultipeerHandshake: NSObject, NSCoding {
 	public var deviceType: String
 	public var deviceIdentifier: String
 	public var date = NSDate()
-	public var uuid: NSUUID? = NSUUID()
+	public var sessionUUID: NSUUID?
 	public var appIdentifier: String
 	public var appName: String
 	
-	override public init() {
+	public init(sessionUUID uuid: NSUUID) {
 		#if os(iOS)
 			deviceName = UIDevice.currentDevice().name
 			deviceType = UIDevice.currentDevice().model
@@ -33,6 +33,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 			deviceIdentifier = ""
 		#endif
 		
+		sessionUUID = uuid
 		appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as? String ?? ""
 		appName = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String ?? ""
 		
@@ -46,7 +47,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 		appIdentifier = aDecoder.decodeObjectForKey("app-id") as? String ?? ""
 		appName = aDecoder.decodeObjectForKey("app-name") as? String ?? ""
 		date = aDecoder.decodeObjectForKey("date") as? NSDate ?? NSDate()
-		if let string = aDecoder.decodeObjectForKey("uuid") as? String { uuid = NSUUID(UUIDString: string) }
+		if let string = aDecoder.decodeObjectForKey("uuid") as? String { sessionUUID = NSUUID(UUIDString: string) }
 		super.init()
 	}
 	
@@ -57,7 +58,7 @@ public class MultipeerHandshake: NSObject, NSCoding {
 		aCoder.encodeObject(self.date, forKey: "date")
 		aCoder.encodeObject(self.appIdentifier, forKey: "app-id")
 		aCoder.encodeObject(self.appName, forKey: "app-name")
-		if let uuid = self.uuid { aCoder.encodeObject(uuid.UUIDString, forKey: "uuid") }
+		if let uuid = self.sessionUUID { aCoder.encodeObject(uuid.UUIDString, forKey: "uuid") }
 	}
 	
 	public override var description: String {
