@@ -16,8 +16,8 @@ import MultipeerConnectivity
 public let MCSESSION_SERVICE_NAME = "chronicle-log"
 
 public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate {
-	public var session: MCSession
-	public var localPeerID: MCPeerID
+	public var session: MCSession!
+	public var localPeerID: MCPeerID!
 	public var sessionUUID = NSUUID()
 	public var advertiser: MCNearbyServiceAdvertiser!
 	public var connectedPeers = Set<MCPeerID>()
@@ -26,6 +26,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	public var waiting: [Message] = []
 	
 	public override func logMessage(message: Message) {
+		if self.session == nil { return }
 		dispatch_async(self.queue, {
 			message.senderUUID = self.sessionUUID
 			if self.connected {
@@ -37,6 +38,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	}
 	
 	func sendMessage(message: Message) {		//always called within the log's queue
+		if self.session == nil { return }
 		if self.connected {
 			var error: NSError?
 			self.session.sendData(message.archivedData, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
@@ -47,6 +49,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	}
 	
 	public override func flush() {
+		if self.session == nil { return }
 		dispatch_async(self.queue) {
 			var waiting = self.waiting
 			self.waiting = []
@@ -56,19 +59,23 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 			}
 		}
 	}
+
+	#if (arch(i386) || arch(x86_64)) && os(iOS)
 	
-	public override init() {
-		#if os(iOS)
-			localPeerID = MCPeerID(displayName: UIDevice.currentDevice().name)
-		#else
-			localPeerID = MCPeerID(displayName: NSHost.currentHost().localizedName)
-		#endif
-		session = MCSession(peer: localPeerID)
-		
-		super.init()
-		self.session.delegate = self
-		self.start()
-	}
+	#else
+		public override init() {
+			#if os(iOS)
+				localPeerID = MCPeerID(displayName: UIDevice.currentDevice().name)
+			#else
+				localPeerID = MCPeerID(displayName: NSHost.currentHost().localizedName)
+			#endif
+			session = MCSession(peer: localPeerID)
+			
+			super.init()
+			self.session.delegate = self
+			self.start()
+		}
+	#endif
 
 	public func stop() {
 		if !self.advertising { return }
@@ -77,7 +84,7 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	}
 	
 	public func start() {
-		
+		if self.session == nil { return }
 		if self.advertising { return }
 		if self.advertiser == nil {
 			self.advertiser = MCNearbyServiceAdvertiser(peer: self.localPeerID, discoveryInfo: nil, serviceType: MCSESSION_SERVICE_NAME)
@@ -93,7 +100,6 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 	//MARK: Advertiser Delegate
 	
 	public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-		
 		dispatch_async(self.queue) {
 			if peerID == self.localPeerID { return }
 			
@@ -139,6 +145,8 @@ public class MultiPeerLogger: Logger, MCNearbyServiceAdvertiserDelegate, MCSessi
 
 	
 	func sendHandshake() {
+		if self.session == nil { return }
+
 		var error: NSError?
 		
 		self.session.sendData(MultiPeerHandshake(sessionUUID: self.sessionUUID, startedAt: self.sessionStartedAt).data, toPeers: self.session.connectedPeers, withMode: .Reliable, error: &error)
