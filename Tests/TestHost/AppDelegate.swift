@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		Chronicle.instance.addLogger(MultiPeerLogger())
 		Chronicle.instance.addLogger(ConsoleLogger())
 		
+		Chronicle.instance.setConsoleURL(NSURL(fileURLWithPath: "~/Documents/console.txt".stringByExpandingTildeInPath))
 		
 		clog("starting up!", tags: ["important", "debug"])
 		

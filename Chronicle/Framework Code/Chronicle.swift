@@ -68,4 +68,14 @@ public class Chronicle: NSObject {
 			logger.logMessage(message)
 		}
 	}
+	
+	public func setConsoleURL(url: NSURL?) {
+		if let path = url?.path {
+			if isatty(STDERR_FILENO) != 0 {		//if we're not hooked up to debugger, let's log to a file
+				
+			}
+			
+			freopen(path.fileSystemRepresentation(), "a+", stderr)
+		}
+	}
 }

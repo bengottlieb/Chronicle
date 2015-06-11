@@ -10,7 +10,7 @@ import Foundation
 
 public class ConsoleLogger: Logger {
 	public override func logMessage(message: Message) {
-		println("\(message)")
+		NSLog("\(message)")
 	}
 	
 	public override init() {
